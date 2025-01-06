@@ -1,6 +1,6 @@
 name: test print
-#on:
-#  push
+on:
+  workflow_dispatch
 jobs:
   my-job:
     runs-on: ubuntu-latest
