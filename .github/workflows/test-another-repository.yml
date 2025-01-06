@@ -2,13 +2,9 @@ name: test print
 on:
   workflow_dispatch
 jobs:
-  my-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: my-step-std
-      - uses: flaxinger-private/actions-common-test@main/.github/workflows/print.yaml
-      - name: my-step-change-1
-        uses: flaxinger-private/actions-common-test@main/.github/print.yaml
-      - name: my-step-change-2
-        uses: flaxinger-private/actions-common-test@main/print.yaml
-
+  my-job-std:
+    uses: flaxinger-private/actions-common-test@main/.github/workflows/print.yaml
+  my-job-change-1:
+    uses: flaxinger-private/actions-common-test@main/.github/print.yaml
+  my-job-change-2:
+    uses: flaxinger-private/actions-common-test@main/print.yaml
