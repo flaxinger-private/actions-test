@@ -3,8 +3,8 @@ on:
   workflow_dispatch
 jobs:
   my-job-std:
-    uses: flaxinger-private/actions-common-test@main/.github/workflows/print.yaml
+    uses: flaxinger-private/actions-common-test/.github/workflows/print.yaml@main
   my-job-change-1:
-    uses: flaxinger-private/actions-common-test@main/.github/print.yaml
+    uses: flaxinger-private/actions-common-test/.github/print.yaml@main
   my-job-change-2:
-    uses: flaxinger-private/actions-common-test@main/print.yaml
+    uses: flaxinger-private/actions-common-test/print.yaml@main
