@@ -4,6 +4,8 @@ on:
 jobs:
   my-job-std:
     uses: flaxinger-private/actions-common-test/.github/workflows/print.yaml@main
+  my-job-change-1:
+    uses: flaxinger-private/actions-common-test/print@main
 #  my-job-change-1:
 #    uses: flaxinger-private/actions-common-test/.github/print.yaml@main
 #  my-job-change-2:
