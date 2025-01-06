@@ -1,0 +1,11 @@
+name: test print
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "Comment"
+
