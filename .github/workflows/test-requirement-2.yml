@@ -2,7 +2,7 @@ name: test print
 on:
   push:
     paths:
-      - 'b'
+      - './b'
 jobs:
   my-job:
     runs-on: ubuntu-latest
