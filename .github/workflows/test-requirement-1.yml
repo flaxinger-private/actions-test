@@ -1,5 +1,9 @@
 name: test print
 on:
+  push:
+    paths:
+      - 'a'
+      - '.github/test-requirement-1.yml'
   pull_request:
     types: [ opened, reopened, synchronize, labeled, unlabeled, closed ]
     paths:
