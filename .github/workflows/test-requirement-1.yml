@@ -23,10 +23,11 @@ jobs:
         id: create-arr
         run: |
           arr=()
-            arr+=('a')
-            arr+=('b')
-            arr+=('c')
-            echo "arr=${arr[@]}" >> $GITHUB_OUTPUT
+          arr+=('a')
+          arr+=('b')
+          arr+=('c')
+          echo "arr=${arr[@]}" >> $GITHUB_OUTPUT
+          echo arr[@]
   print:
     needs: my-job
     strategy:
