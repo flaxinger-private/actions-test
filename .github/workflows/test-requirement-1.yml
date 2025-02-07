@@ -3,10 +3,41 @@ on:
   push:
     paths:
       - 'a'
+      - '.github/workflows/test-requirement-1.yml'
+  pull_request:
+    types: [ opened, reopened, synchronize, labeled, unlabeled, closed ]
+    paths:
+      - 'a'
+      - '.github/test-requirement-1.yml'
 jobs:
   my-job:
     runs-on: ubuntu-latest
+    outputs:
+      arr: ${{ steps.create-arr.outputs.arr }}
+      joined: ${{ steps.create-arr.outputs.joined }}
     steps:
       - name: my-step
         run: echo "Success!"
-
+      - name: test shorthand if else
+        run: echo hi $(github.event_name == 'pull_request' && echo 'pull_request' || echo 'not pull_request')
+      - name: create array
+        id: create-arr
+        run: |
+          arr=()
+          arr+=('a')
+          arr+=('b')
+          arr+=('c')
+          echo "arr=${arr[@]}" >> $GITHUB_OUTPUT
+          echo ${arr[@]}
+          printf -v joined "'%s', " "${arr[@]}"
+          echo "joined=[${joined%, }]" >> $GITHUB_OUTPUT
+          echo $joined
+  print:
+    needs: my-job
+    strategy:
+      matrix:
+        letter: ${{ fromJson( needs.my-job.outputs.joined) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: echo ${{ matrix.letter }}
