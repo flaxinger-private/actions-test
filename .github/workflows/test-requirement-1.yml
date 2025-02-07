@@ -27,7 +27,7 @@ jobs:
           arr+=('b')
           arr+=('c')
           echo "arr=${arr[@]}" >> $GITHUB_OUTPUT
-          echo arr[@]
+          echo ${arr[@]}
   print:
     needs: my-job
     strategy:
