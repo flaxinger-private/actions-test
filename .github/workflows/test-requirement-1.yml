@@ -12,10 +12,26 @@ on:
 jobs:
   my-job:
     runs-on: ubuntu-latest
+    outputs:
+      arr: ${{ steps.my-step.outputs.arr }}
     steps:
       - name: my-step
         run: echo "Success!"
       - name: test shorthand if else
         run: echo hi $(github.event_name == 'pull_request' && echo 'pull_request' || echo 'not pull_request')
-      - name: fail
-        run: exit 1
+      - name: create array
+        run: |
+          arr=()
+            arr+=('a')
+            arr+=('b')
+            arr+=('c')
+            echo "arr=${arr[@]}" >> $GITHUB_OUTPUT
+  print:
+    needs: my-job
+    strategy:
+      matrix:
+        letter: ${{ fromJson( needs.my-job.outputs.arr) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: echo ${{ matrix.letter }}
