@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       arr: ${{ steps.create-arr.outputs.arr }}
+      joined: ${{ steps.create-arr.outputs.joined }}
     steps:
       - name: my-step
         run: echo "Success!"
@@ -37,7 +38,7 @@ jobs:
     needs: my-job
     strategy:
       matrix:
-        letter: ${{ fromJson( needs.my-job.outputs.arr) }}
+        letter: ${{ fromJson( needs.my-job.outputs.joined) }}
     runs-on: ubuntu-latest
     steps:
       - name: print
