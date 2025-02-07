@@ -30,9 +30,7 @@ jobs:
           echo "arr=${arr[@]}" >> $GITHUB_OUTPUT
           echo ${arr[@]}
           printf -v joined "'%s', " "${arr[@]}"
-          joined="${joined%, }"
-          joined="[${joined}]"
-          echo "joined=${joined}" >> $GITHUB_OUTPUT
+          echo "joined=[${joined%, }]" >> $GITHUB_OUTPUT
           echo $joined
   print:
     needs: my-job
